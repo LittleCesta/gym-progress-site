@@ -1,0 +1,10 @@
+node_modules
+.env.development
+.env.production
+.downloads
+.records
+data.json
+
+dist
+*.log
+.captcha

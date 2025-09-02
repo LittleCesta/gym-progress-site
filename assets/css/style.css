@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+:root{
+    --primary-color: #a4193d;
+    --secondary-color: #FFDFB9;
+    --darker-primary-color: #881634;
+    --ligther-primary-color: #db7c95;
+    --white-color: #FFF;
+    --box-shadow-color:rgba(0, 0, 0, 0.1);
+    --black-color: #14161a;
+    --main-transition: 0.5s all ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--primary-color);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1400px; /* 1400px */
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1, h2 {
+  text-align: center;
+  color: var(--black-color);
+  margin-bottom: 20px;
+}
+
+.form {
+  width: 60%;
+  background: var(--secondary-color);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px var(--box-shadow-color);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #dcdde1;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+
+input:focus {
+  border-color: #00a8ff;
+  outline: none;
+}
+
+/* remover as setas de incremento/decremento do input number */
+input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input.erro {
+  border-color: #e84118;
+  background: #fff5f5;
+}
+
+#btn-salvar {
+  background: var(--darker-primary-color);
+  color: var(--white-color);
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: 0.3s;
+}
+
+#btn-salvar:hover {
+  background: var(--ligther-primary-color);
+}
+
+.lista-fichas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+  gap: 40px; /* Espaço entre seções */
+}
+
+/* ===== SEÇÃO DE FICHAS COM MULTICOLUNA (ATÉ 5 POR LINHA) ===== */
+.section-fichas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px; /* Espaço entre a letra e os cards */
+  margin: 30px 0;
+  position: relative;
+}
+
+/* Container dos cards em grid (até 5 por linha) */
+.section-fichas > .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: calc(5 * 250px + 4 * 20px); /* 5 cards + 4 espaços */
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* Garante que os cards não ultrapassem 250px */
+.section-fichas > .cards-grid .ficha-card {
+  width: 100%;
+  max-width: 250px;
+}
+
+/* Letra estilizada no topo da seção */
+.section-fichas::before {
+  content: attr(data-letra);
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-color: var(--secondary-color);
+  color: var(--darker-primary-color);
+  font-weight: bold;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 3px solid var(--white-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 15px auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* Fundo branco dos cards */
+.ficha-card {
+  width: 250px;
+  background: var(--white-color);
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.ficha-card:hover {
+  transform: translateY(-2px);
+}
+
+
+.ficha-card h3 {
+  margin: 0 0 10px;
+  color: var(--black-color);
+}
+
+.ficha-card p {
+  margin: 5px 0;
+  color: var(--black-color);
+}
+
+.ficha-card button {
+  background: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+  font-size: 14px;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  transition: background 0.2s;
+}
+
+.ficha-card button:hover {
+  background: var(--darker-primary-color);
+}
+
+.progresso {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+.menu-toggle {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  justify-content: center;
+  top: 15px;
+  left: 15px;
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-size: 24px;
+  padding: 8px 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.sidebar {
+  width: 80px;
+  background-color: var(--white-color);
+  padding: 50px 10px;
+  padding-left: 15px;
+  position: fixed;
+  top: 0;
+  height: 100%;
+  overflow: hidden;
+  transition: var(--main-transition);
+  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sidebar.expanded {
+  width: 250px;
+  padding: 50px 10px;
+  padding-left: 15px; /* mantém o alinhamento com o botão */
+  gap: 15px;
+}
+
+.sidebar .profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  display: grid;
+  place-items: center;
+  font-size: 25px;
+  margin-top: 50px;
+  flex-shrink: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.sidebar ul span {
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 13px;
+  display: block;
+  padding: 0 0 20px 10px;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-radius: 15px;
+  transition: 0.3s all ease-in-out;
+  font-size: 16px;
+  color: var(--darker-primary-color);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  margin-left: 0;
+  width: calc(100% - 0px); /* opcional */
+}
+
+.sidebar ul li a:hover {
+  background-color: var(--ligther-primary-color);
+  color: var(--white-color);
+}
+
+.sidebar ul li a ion-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+/* Texto escondido quando fechado */
+.sidebar ul li a p{
+  display: none;
+}
+.sidebar ul span {
+  color: transparent;
+}
+.sidebar.expanded ul span {
+  color: var(--primary-color);
+  transition: var(--main-transition);
+}
+
+/* Texto visível quando expandido */
+.sidebar.expanded ul li a p{
+  transition: var(--main-transition);
+  display: block;
+}
+
+
+
+/* ===== CONTEÚDO ===== */
+main {
+  margin-left: 80px;
+  padding: 20px;
+  transition: margin-left var(--main-transition);
+}
+
+.sidebar.expanded ~ main {
+  margin-left: 250px;
+}
+
+.search-box{
+  background-color: var(--white-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: flex;
+  margin: auto 1rem0;
+  flex-direction: column;
+  width: 100%;
+  max-width: 25rem; /* Posso remover para deixar ele com a largura total do container*/
+  transition: max-height 0.5s
+}
+
+.search-box ::placeholder{
+  color: var(--primary-color);
+  font-size: 1.10rem;
+}
+
+.row{
+  display:flex;
+  align-items: center;
+}
+
+.search-box button{
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  margin-right: 0.75rem;
+}
+
+.search-box input{
+  flex: 1;
+  max-height: 3rem;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  font-size: 1rem;
+  background: transparent;
+  color: var(--primary-color)
+}
+
+.search-box input ::placeholder{
+  background: transparent;
+  color: var(--primary-color)
+}
+
+.search-box button ion-icon{
+  font-size: 1.5rem;
+  color: var(--primary-color)
+}
+
+.results{
+  overflow-y: auto;
+  height: fit-content;
+  max-height: 500rem;
+}
+
+.results ul{
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  gap: 0.125rem;
+}
+
+.results ul li:first-child{
+  margin-top: 0.5rem;
+}
+
+.results ul li{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.25rem;
+  padding-left: 0.75rem;
+  transition: background 0.25s;
+  border-left: 2px solid transparent;
+}
+
+.results ul li:hover{
+  cursor: pointer;
+  background: var(--ligther-primary-color);
+  border-left: 2px solid var(--primary-color);
+}
+
+.results ul li img{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.75rem;
+}
+
+.results ul li.highlight{
+  background: var(--ligther-primary-color);
+  border-left: 2px solid var(--primary-color);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .sidebar {
+    left: -80px;
+  }
+
+  .sidebar.expanded {
+    left: 0;
+  }
+
+  main {
+    margin-left: 0;
+  }
+
+  .sidebar.expanded ~ main {
+    margin-left: 0;
+  }
+}
+
+/* ===== ANIMAÇÃO DE EXLCUSÃO DE CARD ===== */
+@layer view-transitions {
+  @layer remove-card {
+      @keyframes animate-out {
+        0% {
+          opacity: 1;
+          transform: scale(0.98);
+        }
+
+        100% {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+      }
+
+      ::view-transition-old(targeted-card):only-child {
+        animation: animate-out ease-in-out 0.5s;
+      }
+
+      ::view-transition-group(.section-fichas) {
+        transition: transform 0.5s ease;
+      }
+    }
+}
+
+/* ===== ANIMAÇÃO DOS DEMAIS CARDS ===== */
+@layer reorder-cards {
+  @supports (view-transition-class: ficha-card) {
+    .warning {
+      display: none;
+    }
+
+    :root {
+      --bounce-easing: linear(
+        0, 0.004, 0.016, 0.035, 0.063, 0.098, 0.141 13.6%, 0.25, 0.391, 0.563, 0.765,
+        1, 0.891 40.9%, 0.848, 0.813, 0.785, 0.766, 0.754, 0.75, 0.754, 0.766, 0.785,
+        0.813, 0.848, 0.891 68.2%, 1 72.7%, 0.973, 0.953, 0.941, 0.938, 0.941, 0.953,
+        0.973, 1, 0.988, 0.984, 0.988, 1
+      );
+    }
+
+    .ficha-card {
+      view-transition-class: ficha-card;
+    }
+
+    /* Without view-transition-class you had to write a selector that targets all cards â€¦ and that selector needed updating whenever you added/removed a card */
+    ::view-transition-group(*.ficha-card) {
+      animation-timing-function: var(--bounce-easing);
+      animation-duration: 0.5s;
+    }
+  }
+}

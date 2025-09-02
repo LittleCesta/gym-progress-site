@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fichas de Treino</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+</head>
+<body>
+  <button class="menu-toggle">☰</button>
+  <aside class="sidebar">
+    <div class="profile">
+      <ion-icon name="person-outline"></ion-icon>
+    </div>
+    <ul>
+    <span>Analytics</span>
+      <li>
+        <a href="/index.html">
+          <ion-icon name="home-outline"></ion-icon>
+          <p>Home</p>
+        </a>
+      </li>
+      <li>
+        <a href="/fichas-salvas.html">
+          <ion-icon name="documents-outline"></ion-icon>
+          <p>Fichas Salvas</p>
+        </a>
+      </li>
+      <li>
+        <a href="/cadastro-de-fichas.html">
+          <ion-icon name="add-circle-outline"></ion-icon>
+          <p>Nova ficha</p>
+        </a>
+      </li>
+    </ul>
+  </aside>
+  <div class="container">
+    <h1>📑 Fichas Salvas</h1>
+
+    <div class="search-box">
+    <div class="row">
+      <button class="btn-search">
+        <ion-icon name="search-outline"></ion-icon>
+      </button>
+      <label for="search" class="visually-hidden">
+        <!-- Buscar nome -->
+      </label>
+      <input type="text" 
+      id="search" 
+      class="search-bar" 
+      placeholder="Buscar nome" 
+      autocomplete="off" 
+      aria-autocomplete="list" 
+      aria-controls="search-results">
+    </div>
+
+    <div class="results">
+      <ul role="listbox"></ul>
+    </div>
+  </div>
+    <div class="lista-fichas"></div>
+  </div>  
+  <script type="module" src="/assets/js/getFichas.js"></script>
+  <script type="module" src="/assets/js/toggleMenu.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script type="importmap">
+  {
+    "imports": {
+      "@faker-js/faker": "https://cdn.jsdelivr.net/npm/@faker-js/faker/+esm"
+    }
+  }
+</script>
+</body>
+</html>

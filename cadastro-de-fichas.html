@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fichas de Treino</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png">
+</head>
+<body>
+  <button class="menu-toggle">☰</button>
+  <aside class="sidebar">
+    <div class="profile">
+      <ion-icon name="person-outline"></ion-icon>
+    </div>
+    <ul>
+    <span>Analytics</span>
+      <li>
+        <a href="index.html">
+          <ion-icon name="home-outline"></ion-icon>
+          <p>Home</p>
+        </a>
+      </li>
+      <li>
+        <a href="/fichas-salvas.html">
+          <ion-icon name="documents-outline"></ion-icon>
+          <p>Fichas Salvas</p>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <ion-icon name="add-circle-outline"></ion-icon>
+          <p>Nova ficha</p>
+        </a>
+      </li>
+
+    </ul>
+  </aside>
+
+
+  <div class="container">
+    <h1>📋 Cadastro de Fichas</h1>
+
+    <!-- Formulário -->
+    <form id="form-ficha" class="form">
+      <div class="form-group">
+        <label>Nome</label>
+        <input type="text" id="nome" name="nome">
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="email" name="email">
+      </div>
+
+      <div class="form-group">
+        <label>Data da ficha</label>
+        <input type="date" id="data-avaliacao" name="data">
+      </div>
+
+      <div class="form-group">
+        <label>Peso (kg)</label>
+        <input type="number" id="peso" name="peso">
+      </div>
+
+      <div class="form-group">
+        <label>Peito (cm)</label>
+        <input type="number" id="peito" name="peito" max="200" min="0">
+      </div>
+
+      <div class="form-group">
+        <label>Abdômen (cm)</label>
+        <input type="number" id="abdomen" name="abdomen">
+      </div>
+
+      <div class="form-group">
+        <label>Ombros (cm)</label>
+        <input type="number" id="ombros" name="ombros">
+      </div>
+
+      <div class="form-group">
+        <label>Quadríceps Esquerdo (cm)</label>
+        <input type="number" id="quadriceps-esquerdo" name="quadricepsEsquerdo">
+      </div>
+
+      <div class="form-group">
+        <label>Quadríceps Direito (cm)</label>
+        <input type="number" id="quadriceps-direito" name="quadricepsDireito">
+      </div>
+
+      <div class="form-group">
+        <label>Panturrilha Esquerda (cm)</label>
+        <input type="number" id="panturrilha-esquerda" name="panturrilhaEsquerda">
+      </div>
+
+      <div class="form-group">
+        <label>Panturrilha Direita (cm)</label>
+        <input type="number" id="panturrilha-direita" name="panturrilhaDireita">
+      </div>
+
+      <div class="form-group">
+        <label>Bíceps Esquerdo (cm)</label>
+        <input type="number" id="biceps-esquerdo" name="bicepsEsquerdo">
+      </div>
+
+      <div class="form-group">
+        <label>Bíceps Direito (cm)</label>
+        <input type="number" id="biceps-direito" name="bicepsDireito">
+      </div>
+
+      <button id="btn-salvar" class="btn">Salvar</button>
+    </form>
+
+  </div>
+
+  <script type="module" src="/assets/js/main.js"></script>
+  <script type="module" src="/assets/js/toggleMenu.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

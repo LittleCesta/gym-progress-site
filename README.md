@@ -1,23 +1,34 @@
-# Site para acompanhar o seu desenvolvimento na academia
+# 🏋️ Gym Progress Site
 
-No site vamos registrar e acompanhar o progresso feito na academia com fichas que mostram as medidas e calculam o progresso na academia ao longo do tempo.
+Site para registrar e acompanhar a evolução na academia, com fichas de treino,
+registro de medidas e cálculo de progresso ao longo do tempo.
 
-## Começando
+## 🧩 Funcionalidades
 
-1. Instale o Node.js na versão >=20.18.0. Recomendado utilizar o [NVM - POSIX](https://github.com/nvm-sh/nvm) ou [NVM - WINDOWS](https://github.com/coreybutler/nvm-windows) para gerenciamento das versões.
+- Cadastro de fichas de treino personalizadas
+- Registro de medidas corporais
+- Acompanhamento do progresso com histórico
+- Interface responsiva com HTML, CSS e TypeScript
 
-2. Execute o script de instalação dos pacotes e depois rode utilizando o live server do vscode.
+## 🚀 Como rodar
 
-## Scripts
+### Pré-requisitos
 
-### Instalação dos pacotes
+- Node.js >= 20.18.0
+  > Recomendado usar [NVM (Linux/Mac)](https://github.com/nvm-sh/nvm) ou [NVM (Windows)](https://github.com/coreybutler/nvm-windows)
+
+### Instalação
 
 ```bash
 npm install
 ```
 
-## Libs / Ferramentas
+### Rodar localmente
 
-- [Node.js](https://nodejs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Tsx](https://tsx.is/)
+Abra o `index.html` com o **Live Server** do VS Code.
+
+## 🛠️ Tecnologias
+
+- **TypeScript** — tipagem estática no frontend
+- **HTML + CSS** — estrutura e estilo
+- **TSX** — execução de TypeScript sem build manual

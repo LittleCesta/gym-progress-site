@@ -1,21 +1,21 @@
 {
   "compilerOptions": {
-    "module": "es6",
-    "target": "es2020",
-    "rootDir": "./src", 
-    "outDir": "./assets/js", 
-    "sourceMap": true,
-    "declaration": false,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "moduleResolution": "node"
+    "target": "ES2022" /* Versão moderna do JS compatível com Node.js atual */,
+    "module": "NodeNext" /* Essencial para ES Modules funcionar bem no Node */,
+    "moduleResolution": "NodeNext" /* Garante que o TS resolva os imports como o Node faz */,
+    "rootDir": "./src" /* Onde estão seus arquivos TypeScript de backend */,
+    "outDir": "./dist" /* COMPILADO VAI PARA A RAIZ, e não para o public/assets */,
+
+    "sourceMap": true /* Ótimo para debugar erros apontando para o arquivo .ts */,
+    "esModuleInterop": true /* Permite importar pacotes CommonJS (como mongoose) usando import */,
+    "forceConsistentCasingInFileNames": true /* Evita problemas de maiúsculas/minúsculas entre Windows e Linux */,
+    "strict": false /* Ativa a checagem estrita de tipos (excelente prática) */,
+    "skipLibCheck": true /* Ignora checagem de tipos dentro do node_modules (ganha velocidade) */,
+    "strictNullChecks": false
   },
-  "include": [
-    "./src/**/*"
-  ],
+  "include": ["src/**/*"],
   "exclude": [
-    "node_modules"
-  ]
+    "node_modules",
+    "public"
+  ] /* Garante que o TS não tente compilar nada da pasta public */
 }

@@ -1,5 +1,10 @@
 import DateFormatterHelper from "../helpers/date-formatter.helper";
 import { IFicha } from "../models/Ficha";
+
+// const resultBox = document.querySelector(".results") as HTMLElement;
+// const resultUl = document.querySelector(".result ul") as HTMLElement;
+// const inputBox = document.querySelector(".search-bar") as HTMLInputElement;
+
 export async function initListarFichas(container: HTMLElement) {
   try {
     const response = await fetch("/api/fichas");
@@ -77,7 +82,6 @@ export async function initListarFichas(container: HTMLElement) {
     console.error("Erro ao conectar com a API:", erro);
   }
 }
-
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".lista-fichas");
 
@@ -87,6 +91,106 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initListarFichas(container);
 });
+
+// @todo Ajustar parte de buscar ficha, criar rota na api
+// function selecionarFicha(element: HTMLElement, nome: string): void {
+//   if (!inputBox) return;
+//   inputBox.value = nome;
+//   if (!resultBox) return;
+//   resultBox.innerHTML = ""; // Esconde a lista
+//   inputBox.focus();
+
+//   // Rolar até o primeiro card com esse nome
+//   const cards = document.querySelectorAll(".ficha-card h3");
+//   let targetCard: HTMLElement | null = null;
+
+//   for (const card of cards) {
+//     if (card.textContent && card.textContent.includes(nome)) {
+//       targetCard = card.parentElement as HTMLElement; // .ficha-card
+//       break;
+//     }
+//   }
+
+//   // 📌 Rola até o card
+//   if (targetCard) {
+//     targetCard.scrollIntoView({ behavior: "smooth", block: "center" });
+
+//     // 💡 Adiciona destaque
+//     targetCard.style.transition = "all 0.3s";
+//     targetCard.style.transform = "scale(1.02)";
+//     targetCard.style.boxShadow = "0 0 15px rgba(164, 25, 61, 0.5)";
+
+//     // Remove após 2 segundos
+//     setTimeout(() => {
+//       targetCard.style.transform = "";
+//       targetCard.style.boxShadow = "";
+//     }, 2000);
+//   }
+// }
+
+// // Exibe os resultados da busca
+// const displayResults = function (result: string[]): void {
+//   if (result.length === 0) {
+//     resultBox.innerHTML = "";
+//     return;
+//   }
+
+//   const resultHTML = result
+//     .map((nome, index) => {
+//       return `
+//       <li role="option" tabindex="0" data-nome="${nome}">
+//         ${nome}
+//       </li>
+//     `;
+//     })
+//     .join("");
+
+//   resultBox.innerHTML = `<ul role="listbox">${resultHTML}</ul>`;
+
+//   // Adiciona os listeners AQUI, depois de criar os elementos
+//   resultBox.querySelectorAll("li").forEach((li) => {
+//     li.addEventListener("click", () => {
+//       const nome = li.getAttribute("data-nome");
+//       if (nome) {
+//         inputBox.value = nome;
+//         resultBox.innerHTML = "";
+//         inputBox.focus();
+//         selecionarFicha(li, nome);
+//       }
+//     });
+//   });
+// };
+
+// // Evento de digitação
+// inputBox.addEventListener("keyup", function (e: KeyboardEvent) {
+//   const input = inputBox.value.trim().toLowerCase();
+
+//   if (input.length === 0) {
+//     resultBox.innerHTML = "";
+//     return;
+//   }
+
+//   // Achata e filtra os nomes
+//   const todasFichas: Ficha[] = fichaDados.flat();
+
+//   // Tranformamos o array de nomes filtrados em um set para tirar os duplicados
+//   const nomesFiltradosUnicos = [
+//     ...new Set(
+//       todasFichas
+//         .map((f) => f.nome)
+//         .filter((nome) => nome.toLowerCase().startsWith(input)),
+//     ),
+//   ];
+
+//   displayResults(nomesFiltradosUnicos);
+// });
+
+// // (Opcional) Fechar a lista com ESC
+// inputBox.addEventListener("keydown", function (e: KeyboardEvent) {
+//   if (e.key === "Escape") {
+//     resultBox.innerHTML = "";
+//   }
+// });
 
 /* function renderizar() {
   lista.innerHTML = ""; // Limpa a lista

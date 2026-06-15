@@ -2,7 +2,7 @@ process.env.NODE_ENVIRONMENT == "development"
   ? process.loadEnvFile(".env.development")
   : process.loadEnvFile(".env.production");
 
-import "./server"; // <-- GARANTE QUE ESTA LINHA EXISTE! Ela executa o código do server.ts
+import "./server";
 import { startServer } from "./server";
 import Logger from "./utils/logger";
 

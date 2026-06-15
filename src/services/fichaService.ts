@@ -42,7 +42,6 @@ async function createFicha(
   }
 }
 
-// Exportando os métodos do serviço
 export const fichaService = {
   createFicha,
   getFichas,

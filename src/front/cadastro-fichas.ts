@@ -3,15 +3,12 @@ export function initCadastroFicha() {
   const formulario = document.querySelector("form");
   console.log("Tentando carregar o formulário de cadastro...", formulario);
 
-  // 2. Se não encontrar o formulário (ex: estamos na index.html), sai da função em paz
   if (!formulario) {
     console.log("Formulário não encontrado nesta página. Função ignorada.");
     return;
   }
 
-  // 3. O ouvinte de 'submit' fica direto no formulário, sem travar em outro DOMContentLoaded
   formulario.addEventListener("submit", async (event) => {
-    // SEGUNDA REGRA DE OURO: Para o recarregamento imediatamente!
     event.preventDefault();
 
     console.log("1. O botão de enviar foi clicado com sucesso!");
@@ -62,7 +59,7 @@ export function initCadastroFicha() {
     console.log("2. Dados coletados com sucesso:", dadosParaEnviar);
 
     try {
-      const response = await fetch("/api/fichas", {
+      const response = await fetch("/api/salvar-ficha", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

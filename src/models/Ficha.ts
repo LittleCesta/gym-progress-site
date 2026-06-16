@@ -23,12 +23,6 @@ export interface IFicha extends IMedidas {
 
 const FichaSchema = new Schema<IFicha>(
   {
-    fichaId: {
-      type: Schema.Types.ObjectId,
-      ref: "Ficha",
-      required: false,
-      default: () => new mongoose.Types.ObjectId(),
-    },
     nome: { type: Schema.Types.String, required: true },
     email: { type: Schema.Types.String, default: "" },
     criadoEm: { type: Schema.Types.Date, default: Date.now },
@@ -46,5 +40,7 @@ const FichaSchema = new Schema<IFicha>(
   },
   { collection: modelName },
 );
+
+// FichaSchema.index({ nome: 1 }, { collation: { locale: "pt", strength: 2 } });
 
 export default mongoose.model<IFicha>(modelName, FichaSchema);

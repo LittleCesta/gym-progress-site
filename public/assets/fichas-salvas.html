@@ -8,47 +8,61 @@
     <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
   </head>
   <body>
-    <button class="menu-toggle">☰</button>
-    <aside class="sidebar">
-      <div class="profile">
-        <ion-icon name="person-outline"></ion-icon>
+    <nav class="navbar">
+      <div class="navbar-brand">
+        <ion-icon name="barbell-outline"></ion-icon>
+        <span>GymProgress</span>
       </div>
-      <ul>
-        <span>Analytics</span>
+      <ul class="navbar-links">
         <li>
-          <a href="/">
-            <ion-icon name="home-outline"></ion-icon>
-            <p>Home</p>
-          </a>
+          <a href="/"
+            ><ion-icon name="home-outline"></ion-icon><span>Home</span></a
+          >
         </li>
         <li>
-          <a href="/fichas-salvas">
-            <ion-icon name="documents-outline"></ion-icon>
-            <p>Fichas Salvas</p>
-          </a>
+          <a href="/fichas-salvas"
+            ><ion-icon name="documents-outline"></ion-icon
+            ><span>Fichas Salvas</span></a
+          >
         </li>
         <li>
-          <a href="/cadastro-de-fichas">
-            <ion-icon name="add-circle-outline"></ion-icon>
-            <p>Nova ficha</p>
-          </a>
+          <a href="/cadastro-de-fichas"
+            ><ion-icon name="add-circle-outline"></ion-icon
+            ><span>Nova Ficha</span></a
+          >
         </li>
       </ul>
-    </aside>
+      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
+    </nav>
+    <div class="mobile-menu">
+      <ul>
+        <li>
+          <a href="/"><ion-icon name="home-outline"></ion-icon> Home</a>
+        </li>
+        <li>
+          <a href="/fichas-salvas"
+            ><ion-icon name="documents-outline"></ion-icon> Fichas Salvas</a
+          >
+        </li>
+        <li>
+          <a href="/cadastro-de-fichas"
+            ><ion-icon name="add-circle-outline"></ion-icon> Nova Ficha</a
+          >
+        </li>
+      </ul>
+    </div>
+
     <div class="container">
       <h1>Fichas Salvas</h1>
-
       <div class="search-box">
         <div class="row">
           <button class="btn-search">
             <ion-icon name="search-outline"></ion-icon>
           </button>
-          <label for="search" class="visually-hidden">
-            <!-- Buscar nome -->
-          </label>
+          <label for="search" class="visually-hidden"></label>
           <input
             type="text"
-            id="search"
+            id="search-bar"
             class="search-bar"
             placeholder="Buscar nome"
             autocomplete="off"
@@ -56,13 +70,13 @@
             aria-controls="search-results"
           />
         </div>
-
         <div class="results">
           <ul role="listbox"></ul>
         </div>
       </div>
       <div class="lista-fichas"></div>
     </div>
+
     <script type="module" src="/assets/js/bundle.js"></script>
     <script
       type="module"

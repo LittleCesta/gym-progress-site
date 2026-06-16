@@ -1,13 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
-:root{
-    --primary-color: #a4193d;
-    --secondary-color: #FFDFB9;
-    --darker-primary-color: #881634;
-    --ligther-primary-color: #db7c95;
-    --white-color: #FFF;
-    --box-shadow-color:rgba(0, 0, 0, 0.1);
-    --black-color: #14161a;
-    --main-transition: 0.5s all ease-in-out;
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
+:root {
+  --primary-color: #a4193d;
+  --secondary-color: #ffdfb9;
+  --darker-primary-color: #881634;
+  --ligther-primary-color: #db7c95;
+  --white-color: #fff;
+  --box-shadow-color: rgba(0, 0, 0, 0.1);
+  --black-color: #14161a;
+  --main-transition: 0.5s all ease-in-out;
+  --navbar-height: 64px;
 }
 
 * {
@@ -16,9 +17,6 @@
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -27,10 +25,134 @@ body {
   background: var(--primary-color);
   margin: 0;
   padding: 0;
+  padding-top: var(--navbar-height);
 }
 
+/* ===== NAVBAR TOPO ===== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background-color: var(--white-color);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 1000;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary-color);
+  font-size: 1.3rem;
+  font-weight: 700;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar-brand ion-icon {
+  font-size: 1.6rem;
+  color: var(--primary-color);
+}
+
+.navbar-links {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li a {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--darker-primary-color);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  white-space: nowrap;
+}
+
+.navbar-links li a:hover {
+  background-color: var(--ligther-primary-color);
+  color: var(--white-color);
+}
+
+.navbar-links li a ion-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+/* Botão hamburguer — só aparece no mobile */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-size: 26px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+/* ===== MENU MOBILE (dropdown) ===== */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  background-color: var(--white-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 999;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.35s ease-in-out;
+}
+
+.mobile-menu.open {
+  max-height: 300px;
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding: 8px 0;
+}
+
+.mobile-menu ul li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  color: var(--darker-primary-color);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.mobile-menu ul li a:hover {
+  background-color: var(--secondary-color);
+}
+
+.mobile-menu ul li a ion-icon {
+  font-size: 1.3rem;
+}
+
+/* ===== CONTAINER ===== */
 .container {
-  max-width: 1400px; /* 1400px */
+  max-width: 1400px;
   margin: auto;
   padding: 20px;
   display: flex;
@@ -38,7 +160,8 @@ body {
   align-items: center;
 }
 
-h1, h2 {
+h1,
+h2 {
   text-align: center;
   color: var(--black-color);
   margin-bottom: 20px;
@@ -76,8 +199,8 @@ input:focus {
   outline: none;
 }
 
-/* remover as setas de incremento/decremento do input number */
-input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -103,53 +226,50 @@ input.erro {
   background: var(--ligther-primary-color);
 }
 
+/* ===== FICHAS ===== */
 .lista-fichas {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px 10px;
-  gap: 40px; /* Espaço entre seções */
+  gap: 40px;
+  width: 80%;
 }
 
-/* ===== SEÇÃO DE FICHAS COM MULTICOLUNA (ATÉ 5 POR LINHA) ===== */
 .section-fichas {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  gap: 20px; /* Espaço entre a letra e os cards */
+  gap: 20px;
   margin: 30px 0;
   position: relative;
 }
 
-/* Container dos cards em grid (até 5 por linha) */
 .section-fichas > .cards-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
   width: 100%;
-  max-width: calc(5 * 250px + 4 * 20px); /* 5 cards + 4 espaços */
+  max-width: calc(5 * 250px + 4 * 20px);
   justify-content: center;
   margin: 0 auto;
 }
 
-/* Garante que os cards não ultrapassem 250px */
 .section-fichas > .cards-grid .ficha-card {
   width: 100%;
   max-width: 250px;
 }
 
-/* Letra estilizada no topo da seção */
 .section-fichas::before {
   content: attr(data-letra);
-  display: block;
+  display: flex;
   width: 50px;
   height: 50px;
   background-color: var(--secondary-color);
   color: var(--darker-primary-color);
   font-weight: bold;
   font-size: 1.5em;
-  display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
@@ -160,7 +280,6 @@ input.erro {
   z-index: 10;
 }
 
-/* Fundo branco dos cards */
 .ficha-card {
   width: 250px;
   background: var(--white-color);
@@ -174,7 +293,6 @@ input.erro {
 .ficha-card:hover {
   transform: translateY(-2px);
 }
-
 
 .ficha-card h3 {
   margin: 0 0 10px;
@@ -205,172 +323,41 @@ input.erro {
 }
 
 .progresso {
-    font-size: 0.9em;
-    font-weight: bold;
-    margin-left: 5px;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin-left: 5px;
 }
 
-.menu-toggle {
-  width: 50px;
-  height: 50px;
-  position: fixed;
-  justify-content: center;
-  top: 15px;
-  left: 15px;
-  background: transparent;
-  border: none;
-  color: var(--primary-color);
-  font-size: 24px;
-  padding: 8px 12px;
-  border-radius: 15px;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-.sidebar {
-  width: 80px;
-  background-color: var(--white-color);
-  padding: 50px 10px;
-  padding-left: 15px;
-  position: fixed;
-  top: 0;
-  height: 100%;
-  overflow: hidden;
-  transition: var(--main-transition);
-  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.sidebar.expanded {
-  width: 250px;
-  padding: 50px 10px;
-  padding-left: 15px; /* mantém o alinhamento com o botão */
-  gap: 15px;
-}
-
-.sidebar .profile {
-  width: 50px;
-  height: 50px;
-  border-radius: 15px;
-  color: var(--white-color);
-  background-color: var(--primary-color);
-  display: grid;
-  place-items: center;
-  font-size: 25px;
-  margin-top: 50px;
-  flex-shrink: 0;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-.sidebar ul span {
-  color: var(--primary-color);
-  text-transform: uppercase;
-  font-weight: 400;
-  font-size: 13px;
-  display: block;
-  padding: 0 0 20px 10px;
-}
-
-.sidebar ul li {
-  margin-bottom: 10px;
-}
-
-.sidebar ul li a {
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  border-radius: 15px;
-  transition: 0.3s all ease-in-out;
-  font-size: 16px;
-  color: var(--darker-primary-color);
-  font-weight: 500;
-  text-decoration: none;
-  white-space: nowrap;
-  margin-left: 0;
-  width: calc(100% - 0px); /* opcional */
-}
-
-.sidebar ul li a:hover {
-  background-color: var(--ligther-primary-color);
-  color: var(--white-color);
-}
-
-.sidebar ul li a ion-icon {
-  font-size: 22px;
-  flex-shrink: 0;
-}
-
-/* Texto escondido quando fechado */
-.sidebar ul li a p{
-  display: none;
-}
-.sidebar ul span {
-  color: transparent;
-}
-.sidebar.expanded ul span {
-  color: var(--primary-color);
-  transition: var(--main-transition);
-}
-
-/* Texto visível quando expandido */
-.sidebar.expanded ul li a p{
-  transition: var(--main-transition);
-  display: block;
-}
-
-
-
-/* ===== CONTEÚDO ===== */
-main {
-  margin-left: 80px;
-  padding: 20px;
-  transition: margin-left var(--main-transition);
-}
-
-.sidebar.expanded ~ main {
-  margin-left: 250px;
-}
-
-.search-box{
+/* ===== SEARCH ===== */
+.search-box {
   background-color: var(--white-color);
   border-radius: 0.5rem;
   padding: 1rem;
   display: flex;
-  margin: auto 1rem0;
   flex-direction: column;
   width: 100%;
-  max-width: 25rem; /* Posso remover para deixar ele com a largura total do container*/
-  transition: max-height 0.5s
+  max-width: 25rem;
+  transition: max-height 0.5s;
 }
 
-.search-box ::placeholder{
+.search-box ::placeholder {
   color: var(--primary-color);
-  font-size: 1.10rem;
+  font-size: 1.1rem;
 }
 
-.row{
-  display:flex;
+.row {
+  display: flex;
   align-items: center;
 }
 
-.search-box button{
+.search-box button {
   background-color: transparent;
   border: 0;
   outline: 0;
   margin-right: 0.75rem;
 }
 
-.search-box input{
+.search-box input {
   flex: 1;
   max-height: 3rem;
   width: 100%;
@@ -378,26 +365,21 @@ main {
   outline: 0;
   font-size: 1rem;
   background: transparent;
-  color: var(--primary-color)
+  color: var(--primary-color);
 }
 
-.search-box input ::placeholder{
-  background: transparent;
-  color: var(--primary-color)
-}
-
-.search-box button ion-icon{
+.search-box button ion-icon {
   font-size: 1.5rem;
-  color: var(--primary-color)
+  color: var(--primary-color);
 }
 
-.results{
+.results {
   overflow-y: auto;
   height: fit-content;
   max-height: 500rem;
 }
 
-.results ul{
+.results ul {
   display: flex;
   flex-direction: column;
   list-style-type: none;
@@ -406,11 +388,11 @@ main {
   gap: 0.125rem;
 }
 
-.results ul li:first-child{
+.results ul li:first-child {
   margin-top: 0.5rem;
 }
 
-.results ul li{
+.results ul li {
   list-style: none;
   display: flex;
   align-items: center;
@@ -420,70 +402,67 @@ main {
   border-left: 2px solid transparent;
 }
 
-.results ul li:hover{
+.results ul li:hover {
   cursor: pointer;
   background: var(--ligther-primary-color);
   border-left: 2px solid var(--primary-color);
 }
 
-.results ul li img{
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 0.75rem;
+.no-results {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  padding-left: 0.75rem;
+  background-color: var(--ligther-primary-color);
+  border-radius: 0.5rem;
 }
 
-.results ul li.highlight{
+.results ul li.highlight {
   background: var(--ligther-primary-color);
   border-left: 2px solid var(--primary-color);
 }
 
 /* ===== MOBILE ===== */
 @media (max-width: 768px) {
-  .sidebar {
-    left: -80px;
+  .navbar-links {
+    display: none;
   }
 
-  .sidebar.expanded {
-    left: 0;
+  .menu-toggle {
+    display: block;
   }
 
-  main {
-    margin-left: 0;
-  }
-
-  .sidebar.expanded ~ main {
-    margin-left: 0;
+  .mobile-menu {
+    display: block;
   }
 }
 
-/* ===== ANIMAÇÃO DE EXLCUSÃO DE CARD ===== */
+/* ===== ANIMAÇÃO DE EXCLUSÃO DE CARD ===== */
 @layer view-transitions {
   @layer remove-card {
-      @keyframes animate-out {
-        0% {
-          opacity: 1;
-          transform: scale(0.98);
-        }
-
-        100% {
-          opacity: 0;
-          transform: scale(0.9);
-        }
+    @keyframes animate-out {
+      0% {
+        opacity: 1;
+        transform: scale(0.98);
       }
-
-      ::view-transition-old(targeted-card):only-child {
-        animation: animate-out ease-in-out 0.5s;
-      }
-
-      ::view-transition-group(.section-fichas) {
-        transition: transform 0.5s ease;
+      100% {
+        opacity: 0;
+        transform: scale(0.9);
       }
     }
+
+    ::view-transition-old(targeted-card):only-child {
+      animation: animate-out ease-in-out 0.5s;
+    }
+
+    ::view-transition-group(.section-fichas) {
+      transition: transform 0.5s ease;
+    }
+  }
 }
 
-/* ===== ANIMAÇÃO DOS DEMAIS CARDS ===== */
 @layer reorder-cards {
   @supports (view-transition-class: ficha-card) {
     .warning {
@@ -492,10 +471,44 @@ main {
 
     :root {
       --bounce-easing: linear(
-        0, 0.004, 0.016, 0.035, 0.063, 0.098, 0.141 13.6%, 0.25, 0.391, 0.563, 0.765,
-        1, 0.891 40.9%, 0.848, 0.813, 0.785, 0.766, 0.754, 0.75, 0.754, 0.766, 0.785,
-        0.813, 0.848, 0.891 68.2%, 1 72.7%, 0.973, 0.953, 0.941, 0.938, 0.941, 0.953,
-        0.973, 1, 0.988, 0.984, 0.988, 1
+        0,
+        0.004,
+        0.016,
+        0.035,
+        0.063,
+        0.098,
+        0.141 13.6%,
+        0.25,
+        0.391,
+        0.563,
+        0.765,
+        1,
+        0.891 40.9%,
+        0.848,
+        0.813,
+        0.785,
+        0.766,
+        0.754,
+        0.75,
+        0.754,
+        0.766,
+        0.785,
+        0.813,
+        0.848,
+        0.891 68.2%,
+        1 72.7%,
+        0.973,
+        0.953,
+        0.941,
+        0.938,
+        0.941,
+        0.953,
+        0.973,
+        1,
+        0.988,
+        0.984,
+        0.988,
+        1
       );
     }
 
@@ -503,7 +516,6 @@ main {
       view-transition-class: ficha-card;
     }
 
-    /* Without view-transition-class you had to write a selector that targets all cards â€¦ and that selector needed updating whenever you added/removed a card */
     ::view-transition-group(*.ficha-card) {
       animation-timing-function: var(--bounce-easing);
       animation-duration: 0.5s;

@@ -1,13 +1,16 @@
 import DateFormatterHelper from "../helpers/date-formatter.helper";
+import HtmlFormatter from "../helpers/html-formatter.helper";
 import { IFicha } from "../models/Ficha";
 
 // const resultBox = document.querySelector(".results") as HTMLElement;
 // const resultUl = document.querySelector(".result ul") as HTMLElement;
 // const inputBox = document.querySelector(".search-bar") as HTMLInputElement;
 
-export async function initListarFichas(container: HTMLElement) {
+const noResultDiv =
+  "<div class='no-results'><p>Nenhuma ficha encontrada no banco de dados.</p></div>";
+export async function buscarTodasAsFichas(container: HTMLElement) {
   try {
-    const response = await fetch("/api/fichas");
+    const response = await fetch("/api/listar-fichas");
 
     if (!response.ok) {
       throw new Error("Erro ao buscar fichas do servidor");
@@ -15,14 +18,12 @@ export async function initListarFichas(container: HTMLElement) {
 
     const fichas: IFicha[] = await response.json();
 
-    // Alinhando com a classe do seu HTML (.lista-fichas)
     if (!container) return;
 
     container.innerHTML = "";
 
     if (fichas.length === 0) {
-      container.innerHTML =
-        "<p>Nenhuma ficha encontrada no banco de dados.</p>";
+      container.innerHTML = noResultDiv;
       return;
     }
 
@@ -82,15 +83,78 @@ export async function initListarFichas(container: HTMLElement) {
     console.error("Erro ao conectar com a API:", erro);
   }
 }
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.querySelector(".lista-fichas");
 
-  if (!(container instanceof HTMLElement)) {
-    return;
+export async function buscarFichaEspecifica(
+  container: HTMLElement,
+  fichaName: string,
+) {
+  try {
+    const response = await fetch(
+      `/api/listar-ficha-especifica/${encodeURIComponent(fichaName)}`,
+    );
+
+    if (!response.ok) {
+      throw new Error("Erro ao buscar ficha por nome");
+    }
+
+    const fichas: IFicha[] = await response.json();
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+    if (fichas.length === 0) {
+      container.innerHTML = noResultDiv;
+      return;
+    }
+
+    fichas.sort((a, b) => a.nome.localeCompare(b.nome));
+    const section = document.createElement("section");
+
+    // Cria o container de grid para os cards
+    const cardsGrid = document.createElement("div");
+    cardsGrid.classList.add("cards-grid");
+
+    fichas.forEach((ficha) => {
+      cardsGrid.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="ficha-card" view-transition-class="ficha-card">    
+          <h3>${HtmlFormatter.escapeHtml(ficha.nome)} - ${DateFormatterHelper.formatDateAndTime(new Date(ficha.criadoEm))}</h3>
+          <p><strong>Email:</strong> ${HtmlFormatter.escapeHtml(ficha.email)}</p>
+          <p><strong>Peso:</strong> ${ficha.peso} kg</p>
+          <p><strong>Peito:</strong> ${ficha.peito} cm</p>
+          <p><strong>Abdômen:</strong> ${ficha.abdomen} cm</p>
+          <p><strong>Ombros:</strong> ${ficha.ombros} cm</p>
+          <p><strong>Quadríceps Esq.:</strong> ${ficha.quadricepsEsquerdo} cm</p>
+          <p><strong>Quadríceps Dir.:</strong> ${ficha.quadricepsDireito} cm</p>
+          <p><strong>Panturrilha Esq.:</strong> ${ficha.panturrilhaEsquerda} cm</p>
+          <p><strong>Panturrilha Dir.:</strong> ${ficha.panturrilhaDireita} cm</p>
+          <p><strong>Bíceps Esq.:</strong> ${ficha.bicepsEsquerdo} cm</p>
+          <p><strong>Bíceps Dir.:</strong> ${ficha.bicepsDireito} cm</p>
+          <button class="btn-excluir" data-nome="${HtmlFormatter.escapeHtml(ficha.nome)}">
+            <ion-icon name="trash-outline"></ion-icon>
+          </button>
+        </div>
+      `,
+      );
+    });
+    section.appendChild(cardsGrid);
+    container.appendChild(section);
+  } catch (erro) {
+    console.error("Erro ao conectar com a API:", erro);
   }
-
-  initListarFichas(container);
-});
+}
+// document.addEventListener("DOMContentLoaded", () => {
+//   const container = document.querySelector(".lista-fichas");
+//   const searchFichasButton = document.querySelector(".btn-search");
+//   if (!(container instanceof HTMLElement)) {
+//     return;
+//   }
+//   searchFichasButton.addEventListener("click", () => {
+//     initListarFichas(container);
+//   });
+// });
 
 // @todo Ajustar parte de buscar ficha, criar rota na api
 // function selecionarFicha(element: HTMLElement, nome: string): void {

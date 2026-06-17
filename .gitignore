@@ -8,3 +8,4 @@ data.json
 dist
 *.log
 .captcha
+public/assets/js/

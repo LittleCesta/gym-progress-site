@@ -4,7 +4,7 @@
     "module": "NodeNext" /* Essencial para ES Modules funcionar bem no Node */,
     "moduleResolution": "NodeNext" /* Garante que o TS resolva os imports como o Node faz */,
     "rootDir": "./src" /* Onde estão seus arquivos TypeScript de backend */,
-    "outDir": "./dist" /* COMPILADO VAI PARA A RAIZ, e não para o public/assets */,
+    "outDir": "./dist/src" /* COMPILADO VAI PARA A RAIZ, e não para o public/assets */,
 
     "sourceMap": true /* Ótimo para debugar erros apontando para o arquivo .ts */,
     "esModuleInterop": true /* Permite importar pacotes CommonJS (como mongoose) usando import */,

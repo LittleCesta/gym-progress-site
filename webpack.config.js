@@ -2,7 +2,7 @@ const path = require("path");
 
 module.exports = {
   // 1. Onde o Webpack vai começar a ler o código do seu front-end
-  entry: "./src/front/main.ts",
+  entry: "./src/frontend/main.ts",
 
   // 2. Modo de desenvolvimento (deixa a compilação mais rápida)
   mode: "development",

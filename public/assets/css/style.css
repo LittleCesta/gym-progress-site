@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap");
 :root {
-  --primary-color: #a4193d;
-  --secondary-color: #ffdfb9;
-  --darker-primary-color: #881634;
-  --ligther-primary-color: #db7c95;
-  --white-color: #fff;
-  --box-shadow-color: rgba(0, 0, 0, 0.1);
-  --black-color: #14161a;
+  --primary-color: #0f172a;
+  --secondary-color: #f1f5f9;
+  --darker-primary-color: #070b15;
+  --ligther-primary-color: #b4d3fd;
+  --white-color: #ffffff;
+  --box-shadow-color: rgba(15, 23, 42, 0.08);
+  --black-color: #030303;
+  --exclude-button: #df243d;
+  --accent-color: #0284c7;
   --main-transition: 0.5s all ease-in-out;
   --navbar-height: 64px;
 }
@@ -86,7 +88,8 @@ body {
 
 .navbar-links li a:hover {
   background-color: var(--ligther-primary-color);
-  color: var(--white-color);
+  color: var(--accent-color);
+  scale: 1.01;
 }
 
 .navbar-links li a ion-icon {
@@ -163,7 +166,7 @@ body {
 h1,
 h2 {
   text-align: center;
-  color: var(--black-color);
+  color: var(--secondary-color);
   margin-bottom: 20px;
 }
 
@@ -174,6 +177,19 @@ h2 {
   border-radius: 10px;
   margin-bottom: 20px;
   box-shadow: 0 2px 6px var(--box-shadow-color);
+}
+
+.form-ficha {
+  width: 60%;
+  background: var(--secondary-color);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px var(--box-shadow-color);
+}
+
+.form-ficha label {
+  color: var(--black-color);
 }
 
 .form-group {
@@ -195,7 +211,7 @@ input {
 }
 
 input:focus {
-  border-color: #00a8ff;
+  border-color: var(--darker-primary-color);
   outline: none;
 }
 
@@ -223,7 +239,7 @@ input.erro {
 }
 
 #btn-salvar:hover {
-  background: var(--ligther-primary-color);
+  background: var(--accent-color);
 }
 
 /* ===== FICHAS ===== */
@@ -318,8 +334,8 @@ input.erro {
   transition: background 0.2s;
 }
 
-.ficha-card button:hover {
-  background: var(--darker-primary-color);
+.ficha-card .btn-excluir:hover {
+  background: var(--exclude-button);
 }
 
 .progresso {
@@ -355,6 +371,26 @@ input.erro {
   border: 0;
   outline: 0;
   margin-right: 0.75rem;
+  padding: 6px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-box button:hover {
+  background-color: var(--ligther-primary-color);
+  transform: scale(1.01);
+}
+
+.search-box button ion-icon {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .search-box input {

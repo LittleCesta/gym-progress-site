@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { FichaSchema } from "../schemas/FichaSchema";
+import { FichaInputSchema } from "../models/FichaModel";
 import { fichaService } from "../services/FichaService";
 import LoggerHelper from "../shared/utils/logger";
 
@@ -17,7 +17,7 @@ export class FichaController {
 
   salvarFicha = async (req: Request, res: Response) => {
     try {
-      const resultado = FichaSchema.safeParse(req.body);
+      const resultado = FichaInputSchema.safeParse(req.body);
       if (!resultado.success) {
         return res.status(400).json({ error: resultado.error.issues });
       }
@@ -39,7 +39,7 @@ export class FichaController {
     }
   };
 
-  buscarPorNome = async (req: Request, res: Response) => {
+  buscarFichaPorNome = async (req: Request, res: Response) => {
     try {
       const ficha = await fichaService.buscarFichasPorNome(
         String(req.params.nome),

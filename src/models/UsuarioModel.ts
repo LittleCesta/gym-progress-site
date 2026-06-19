@@ -11,6 +11,7 @@ export type UsuarioInput = z.infer<typeof UsuarioInputSchema>;
 
 // ===== MONGOOSE (persistência no banco) =====
 const modelName = "usuarios";
+
 export interface IUsuario extends Document, UsuarioInput {
   criadoEm: Date;
 }

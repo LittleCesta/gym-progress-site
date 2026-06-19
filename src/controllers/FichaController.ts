@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { FichaSchema } from "./fichas.schema";
-import { fichaService } from "./fichas.service";
-import LoggerHelper from "../../shared/utils/logger";
+import { FichaSchema } from "../schemas/FichaSchema";
+import { fichaService } from "../services/FichaService";
+import LoggerHelper from "../shared/utils/logger";
 
 export class FichaController {
   constructor(private logger: LoggerHelper) {}

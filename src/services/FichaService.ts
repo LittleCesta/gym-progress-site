@@ -1,7 +1,7 @@
-import Ficha, { IFicha } from "./fichas.model";
-import LoggerHelper from "../../shared/utils/logger";
-import StringFormatter from "../../helpers/string-formatter.helper";
-import { FichaInputData } from "../../types/ficha-from-input";
+import Ficha, { IFicha } from "../models/FichaModel";
+import LoggerHelper from "../shared/utils/logger";
+import StringFormatter from "../helpers/string-formatter.helper";
+import { FichaInputData } from "../types/ficha-from-input";
 
 // Função para buscar todas as fichas no banco de dados (Back-end)
 async function getFichas(logger: LoggerHelper): Promise<IFicha[]> {

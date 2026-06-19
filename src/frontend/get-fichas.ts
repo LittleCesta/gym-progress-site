@@ -1,6 +1,6 @@
 import DateFormatterHelper from "../helpers/date-formatter.helper";
 import HtmlFormatter from "../helpers/html-formatter.helper";
-import { IFicha } from "../modules/fichas/fichas.model";
+import { IFicha } from "../models/FichaModel";
 
 // const resultBox = document.querySelector(".results") as HTMLElement;
 // const resultUl = document.querySelector(".result ul") as HTMLElement;
@@ -11,22 +11,29 @@ const noResultDiv =
 
 const cardFicha = (ficha: IFicha, letra: string) => {
   return `
-        <div class="ficha-card" view-transition-class="ficha-card">    
-          <h3>${HtmlFormatter.escapeHtml(ficha.nome)} - ${DateFormatterHelper.formatDateAndTime(new Date(ficha.criadoEm))}</h3>
-          <p><strong>Email:</strong> ${HtmlFormatter.escapeHtml(ficha.email)}</p>
-          <p><strong>Peso:</strong> ${ficha.peso} kg</p>
-          <p><strong>Peito:</strong> ${ficha.peito} cm</p>
-          <p><strong>Abdômen:</strong> ${ficha.abdomen} cm</p>
-          <p><strong>Ombros:</strong> ${ficha.ombros} cm</p>
-          <p><strong>Quadríceps Esq.:</strong> ${ficha.quadricepsEsquerdo} cm</p>
-          <p><strong>Quadríceps Dir.:</strong> ${ficha.quadricepsDireito} cm</p>
-          <p><strong>Panturrilha Esq.:</strong> ${ficha.panturrilhaEsquerda} cm</p>
-          <p><strong>Panturrilha Dir.:</strong> ${ficha.panturrilhaDireita} cm</p>
-          <p><strong>Bíceps Esq.:</strong> ${ficha.bicepsEsquerdo} cm</p>
-          <p><strong>Bíceps Dir.:</strong> ${ficha.bicepsDireito} cm</p>
-          <button class="btn-excluir" data-id="${ficha._id}" data-nome="${HtmlFormatter.escapeHtml(ficha.nome)} data-letra="${letra}"">
-            <ion-icon name="trash-outline"></ion-icon>
-          </button>
+        <div class="ficha-card" view-transition-class="ficha-card" data-letra="${letra}">
+          <div class="div-ficha-card-text">    
+            <h3>${HtmlFormatter.escapeHtml(ficha.nome)} - ${DateFormatterHelper.formatDateAndTime(new Date(ficha.criadoEm))}</h3>
+            <p><strong>Email:</strong> ${HtmlFormatter.escapeHtml(ficha.email)}</p>
+            <p><strong>Peso:</strong> ${ficha.peso} kg</p>
+            <p><strong>Peito:</strong> ${ficha.peito} cm</p>
+            <p><strong>Abdômen:</strong> ${ficha.abdomen} cm</p>
+            <p><strong>Ombros:</strong> ${ficha.ombros} cm</p>
+            <p><strong>Quadríceps Esq.:</strong> ${ficha.quadricepsEsquerdo} cm</p>
+            <p><strong>Quadríceps Dir.:</strong> ${ficha.quadricepsDireito} cm</p>
+            <p><strong>Panturrilha Esq.:</strong> ${ficha.panturrilhaEsquerda} cm</p>
+            <p><strong>Panturrilha Dir.:</strong> ${ficha.panturrilhaDireita} cm</p>
+            <p><strong>Bíceps Esq.:</strong> ${ficha.bicepsEsquerdo} cm</p>
+            <p><strong>Bíceps Dir.:</strong> ${ficha.bicepsDireito} cm</p>
+          </div>
+          <div class="div-ficha-card-buttons">
+            <button class="btn-excluir" data-id="${ficha._id}" data-nome="${HtmlFormatter.escapeHtml(ficha.nome)}">
+              <ion-icon name="trash-outline"></ion-icon>
+            </button>
+            <button class="btn-editar" data-id="${ficha._id}">
+              <ion-icon name="create-outline"></ion-icon>
+            </button>
+          </div>
         </div>
       `;
 };

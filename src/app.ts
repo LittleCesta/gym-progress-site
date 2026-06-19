@@ -10,6 +10,10 @@ export function createApp(logger: LoggerHelper) {
   // Middlewares Globais
   app.use(express.json());
 
+  // Configuração do EJS como view engine
+  app.set("view engine", "ejs");
+  app.set("views", path.join(process.cwd(), "views"));
+
   // Servir arquivos estáticos (CSS, JS, Imagens) mapeado corretamente para evitar erro MIME
   app.use(
     "/assets",

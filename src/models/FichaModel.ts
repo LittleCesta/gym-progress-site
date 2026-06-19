@@ -1,14 +1,34 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { FichaInput } from "../schemas/FichaSchema";
+import { z } from "zod";
+
+// ===== ZOD (validação dos dados de entrada) =====
+
+export const FichaInputSchema = z.object({
+  nome: z.string().min(2).max(100),
+  email: z.string().optional().or(z.literal("")),
+  peso: z.number().min(0).max(200).default(0),
+  peito: z.number().min(0).max(200).default(0),
+  abdomen: z.number().min(0).max(200).default(0),
+  ombros: z.number().min(0).max(200).default(0),
+  quadricepsEsquerdo: z.number().min(0).max(150).default(0),
+  quadricepsDireito: z.number().min(0).max(150).default(0),
+  panturrilhaEsquerda: z.number().min(0).max(150).default(0),
+  panturrilhaDireita: z.number().min(0).max(150).default(0),
+  bicepsEsquerdo: z.number().min(0).max(150).default(0),
+  bicepsDireito: z.number().min(0).max(150).default(0),
+});
+
+export type FichaInput = z.infer<typeof FichaInputSchema>;
+
+// ===== MONGOOSE (persistência no banco) =====
 
 const modelName = "fichas";
 
-// Estende o tipo do Zod, adicionando só o que é exclusivo do banco
 export interface IFicha extends Document, FichaInput {
   criadoEm: Date;
 }
 
-const FichaModelSchema = new Schema<IFicha>(
+const FichaMongooseSchema = new Schema<IFicha>(
   {
     nome: { type: Schema.Types.String, required: true },
     email: { type: Schema.Types.String, default: "" },
@@ -28,4 +48,4 @@ const FichaModelSchema = new Schema<IFicha>(
   { collection: modelName },
 );
 
-export default mongoose.model<IFicha>(modelName, FichaModelSchema);
+export default mongoose.model<IFicha>(modelName, FichaMongooseSchema);

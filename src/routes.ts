@@ -1,7 +1,7 @@
 // src/routes.ts
 import { Router } from "express";
 import path from "path";
-import { FichaController } from "./modules/fichas/fichas.controller";
+import { FichaController } from "./controllers/FichaController";
 import LoggerHelper from "./shared/utils/logger";
 
 export function createRouter(logger: LoggerHelper): Router {

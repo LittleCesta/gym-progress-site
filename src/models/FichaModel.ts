@@ -30,7 +30,7 @@ export interface IFicha extends Document, FichaInput {
 
 const FichaMongooseSchema = new Schema<IFicha>(
   {
-    nome: { type: Schema.Types.String, required: true },
+    nome: { type: Schema.Types.String, required: true, unique: true },
     email: { type: Schema.Types.String, default: "" },
     criadoEm: { type: Schema.Types.Date, default: Date.now },
 

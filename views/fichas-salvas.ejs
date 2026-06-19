@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="pt-BR">
+  <%- include('partials/head') %>
+  <body>
+    <%- include('partials/navbar') %>
+
+    <div class="container">
+      <h1>Fichas Salvas</h1>
+      <div class="search-box">
+        <div class="row">
+          <button class="btn-search">
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
+          <label for="search" class="visually-hidden"></label>
+          <input
+            type="text"
+            id="search-bar"
+            class="search-bar"
+            placeholder="Buscar nome"
+            autocomplete="off"
+            aria-autocomplete="list"
+            aria-controls="search-results"
+          />
+        </div>
+        <div class="results">
+          <ul role="listbox"></ul>
+        </div>
+      </div>
+      <div class="lista-fichas"></div>
+    </div>
+
+    <%- include('partials/scripts') %>
+  </body>
+</html>

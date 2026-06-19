@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+  <%- include('partials/head') %>
+  <body>
+    <%- include('partials/navbar') %>
+
+    <div class="container">
+      <div class="login-page-title">
+        <h1>Faça o login</h1>
+      </div>
+      <form id="form-login" class="form-login">
+        <div class="form-group">
+          <label>Email</label
+          ><input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email..."
+            autocomplete="email"
+          />
+        </div>
+        <div class="form-group">
+          <label>Senha</label
+          ><input
+            type="password"
+            id="senha"
+            name="senha"
+            placeholder="Senha..."
+            autocomplete="current-password"
+          />
+        </div>
+        <button id="btn-login" class="btn">Login</button>
+      </form>
+    </div>
+
+    <%- include('partials/scripts') %>
+  </body>
+</html>

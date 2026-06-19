@@ -1,56 +1,8 @@
 <!doctype html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Menu principal</title>
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
-  </head>
+  <%- include('partials/head') %>
   <body>
-    <nav class="navbar">
-      <div class="navbar-brand">
-        <ion-icon name="barbell-outline"></ion-icon>
-        <span>GymProgress</span>
-      </div>
-      <ul class="navbar-links">
-        <li>
-          <a href="/"
-            ><ion-icon name="home-outline"></ion-icon><span>Home</span></a
-          >
-        </li>
-        <li>
-          <a href="/fichas-salvas"
-            ><ion-icon name="documents-outline"></ion-icon
-            ><span>Fichas Salvas</span></a
-          >
-        </li>
-        <li>
-          <a href="/cadastro-de-fichas"
-            ><ion-icon name="add-circle-outline"></ion-icon
-            ><span>Nova Ficha</span></a
-          >
-        </li>
-      </ul>
-      <button class="menu-toggle" aria-label="Abrir menu">☰</button>
-    </nav>
-    <div class="mobile-menu">
-      <ul>
-        <li>
-          <a href="/"><ion-icon name="home-outline"></ion-icon> Home</a>
-        </li>
-        <li>
-          <a href="/fichas-salvas"
-            ><ion-icon name="documents-outline"></ion-icon> Fichas Salvas</a
-          >
-        </li>
-        <li>
-          <a href="/cadastro-de-fichas"
-            ><ion-icon name="add-circle-outline"></ion-icon> Nova Ficha</a
-          >
-        </li>
-      </ul>
-    </div>
+    <%- include('partials/navbar') %>
 
     <div class="container">
       <div class="start-page-title">
@@ -63,29 +15,13 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center">
-            <!-- <h3>Acompanhamento completo</h3> -->
             <h3>Uma equipe multidisciplinar que cuida de você.</h3>
           </div>
         </div>
         <div class="professionals-row">
           <div class="professional-col">
             <div class="red_box professional-box">
-              <!-- <img
-                src="/site-21/images/professionals/personal_g.png"
-                alt="Personal Trainers"
-                title="Personal Trainers"
-                loading="lazy"
-              /> -->
-
               <div class="professional-box-title-box">
-                <!-- <div class="img_box">
-                  <img
-                    class="professional-box-img"
-                    src="/site-21/images/blue_icon_1.svg"
-                    alt="Personal Trainer"
-                    title="Personal Trainer"
-                  />
-                </div> -->
                 <h5 class="professional-box-title">Personal Trainer</h5>
               </div>
 
@@ -105,22 +41,7 @@
           </div>
           <div class="professional-col">
             <div class="red_box professional-box">
-              <!-- <img
-                src="/site-21/images/professionals/nutritionist_g.png"
-                alt="Nutricionistas"
-                title="Nutricionistas"
-                loading="lazy"
-              /> -->
-
               <div class="professional-box-title-box">
-                <!-- <div class="img_box">
-                  <img
-                    class="professional-box-img-2"
-                    src="/site-21/images/blue_icon_2.svg"
-                    alt="Nutricionista"
-                    title="Nutricionista"
-                  />
-                </div> -->
                 <h5 class="professional-box-title">Nutricionista</h5>
               </div>
 
@@ -138,22 +59,7 @@
           </div>
           <div class="professional-col">
             <div class="red_box professional-box">
-              <!-- <img
-                src="/site-21/images/professionals/psychologist_g_hmm.png"
-                alt="Psicólogos"
-                title="Psicólogos"
-                loading="lazy"
-              /> -->
-
               <div class="professional-box-title-box">
-                <!-- <div class="img_box">
-                  <img
-                    class="professional-box-img-2"
-                    src="/site-21/images/blue_icon_3.svg"
-                    alt="Psicólogo"
-                    title="Psicólogo"
-                  /> -->
-                <!-- </div> -->
                 <h5 class="professional-box-title">Psicólogo</h5>
               </div>
 
@@ -173,8 +79,6 @@
         </div>
         <div class="row">
           <div class="col-12">
-            <!-- <h4>Uma equipe multidisciplinar que cuida de você.</h4> -->
-            <!-- <h4>Deixe que nós cuidamos de tudo para você com um trabalho multidisciplinar</h4> -->
             <hr />
             <h3>Treinos, alimentação e bem-estar.</h3>
           </div>
@@ -198,14 +102,6 @@
       </div>
     </section>
 
-    <script type="module" src="/assets/js/bundle.js"></script>
-    <script
-      type="module"
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
-    ></script>
+    <%- include('partials/scripts') %>
   </body>
 </html>

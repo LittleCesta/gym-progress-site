@@ -27,7 +27,7 @@ const cardFicha = (ficha: IFicha, letra: string) => {
             <button class="btn-excluir" data-id="${ficha._id}" data-nome="${HtmlFormatter.escapeHtml(ficha.nome)}">
               <ion-icon name="trash-outline"></ion-icon>
             </button>
-            <button class="btn-editar" data-id="${ficha._id}">
+            <button class="btn-editar" data-id="${ficha._id}" onclick="window.location.href='/editar-ficha-salva/${ficha._id}'">
               <ion-icon name="create-outline"></ion-icon>
             </button>
           </div>
@@ -96,7 +96,7 @@ export default class Fichas {
   ) {
     try {
       const response = await fetch(
-        `/api/listar-ficha-especifica/${encodeURIComponent(fichaName)}`,
+        `/api/listar-ficha-especifica/nome/${encodeURIComponent(fichaName)}`,
       );
 
       if (!response.ok) {
@@ -157,11 +157,34 @@ export default class Fichas {
       console.error("Falha na requisição:", erro);
     }
   }
+  static async editarFicha(idFicha: string, dadosParaEnviar: object) {
+    try {
+      const response = await fetch(`/api/editar-ficha/${idFicha}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dadosParaEnviar),
+      });
+
+      if (response.ok) {
+        alert("Ficha editada com sucesso!");
+        window.location.href = "/fichas-salvas";
+      } else {
+        const erro = await response.json();
+        alert(`Erro ao editar ficha: ${erro.error}`);
+      }
+    } catch (erro) {
+      console.error("Falha na requisição:", erro);
+    }
+  }
 
   // ===== CADASTRO =====
 
   static initCadastroFicha() {
-    const formulario = document.querySelector("form");
+    const formulario = document.querySelector(
+      ".form-cadastro-ficha",
+    ) as HTMLFormElement;
     if (!formulario) {
       console.log("Formulário não encontrado nesta página. Função ignorada.");
       return;
@@ -289,6 +312,73 @@ export default class Fichas {
           this.deletarFicha(idFicha);
         }
       }
+    });
+  }
+
+  static initEditarFicha() {
+    const formulario = document.querySelector(
+      ".form-editar-ficha",
+    ) as HTMLFormElement | null;
+
+    if (!formulario) {
+      console.log("Formulário não encontrado nesta página. Função ignorada.");
+      return;
+    }
+
+    const idFicha = formulario.getAttribute("data-id");
+
+    if (!idFicha) {
+      console.log("ID da ficha não encontrado no formulário. Função ignorada.");
+      return;
+    }
+
+    formulario.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const dadosParaEnviar = {
+        nome:
+          (document.getElementById("nome") as HTMLInputElement)?.value || "",
+        email:
+          (document.getElementById("email") as HTMLInputElement)?.value || "",
+        peso: Number(
+          (document.getElementById("peso") as HTMLInputElement)?.value || 0,
+        ),
+        peito: Number(
+          (document.getElementById("peito") as HTMLInputElement)?.value || 0,
+        ),
+        abdomen: Number(
+          (document.getElementById("abdomen") as HTMLInputElement)?.value || 0,
+        ),
+        ombros: Number(
+          (document.getElementById("ombros") as HTMLInputElement)?.value || 0,
+        ),
+        quadricepsEsquerdo: Number(
+          (document.getElementById("quadriceps-esquerdo") as HTMLInputElement)
+            ?.value || 0,
+        ),
+        quadricepsDireito: Number(
+          (document.getElementById("quadriceps-direito") as HTMLInputElement)
+            ?.value || 0,
+        ),
+        panturrilhaEsquerda: Number(
+          (document.getElementById("panturrilha-esquerda") as HTMLInputElement)
+            ?.value || 0,
+        ),
+        panturrilhaDireita: Number(
+          (document.getElementById("panturrilha-direita") as HTMLInputElement)
+            ?.value || 0,
+        ),
+        bicepsEsquerdo: Number(
+          (document.getElementById("biceps-esquerdo") as HTMLInputElement)
+            ?.value || 0,
+        ),
+        bicepsDireito: Number(
+          (document.getElementById("biceps-direito") as HTMLInputElement)
+            ?.value || 0,
+        ),
+      };
+
+      this.editarFicha(idFicha, dadosParaEnviar);
     });
   }
 }

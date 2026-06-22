@@ -5,4 +5,5 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleMenu();
   Fichas.initCadastroFicha();
   Fichas.initListagemFichas();
+  Fichas.initEditarFicha();
 });

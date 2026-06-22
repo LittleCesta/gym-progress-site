@@ -43,6 +43,28 @@ async function buscarFichasPorNome(
     return [];
   }
 }
+async function buscarFichaPorId(
+  idFicha: string,
+  logger: LoggerHelper,
+): Promise<IFicha | null> {
+  try {
+    const ficha = await Ficha.findById(idFicha);
+
+    if (!ficha) {
+      logger.log("WARN", `Nenhuma ficha encontrada com o ID: ${idFicha}`);
+      return null;
+    }
+
+    logger.log(
+      "INFO",
+      "Ficha buscada com sucesso no banco.(buscarFichaPorId())",
+    );
+    return ficha;
+  } catch (e: any) {
+    logger.log("ERROR", `Erro ao buscar ficha no banco: ${e.message}`);
+    return null;
+  }
+}
 
 async function createFicha(
   ficha: FichaInputData,
@@ -92,9 +114,23 @@ async function deletarFicha(
   }
 }
 
+async function editarFicha(idFicha: string, ficha: FichaInputData) {
+  try {
+    const fichaAtualizada = await Ficha.findByIdAndUpdate(idFicha, ficha, {
+      new: true,
+    });
+    return fichaAtualizada;
+  } catch (e) {
+    console.log("Erro ao atualizar ficha: " + e.message);
+    return null;
+  }
+}
+
 export const fichaService = {
   createFicha,
   getFichas,
   buscarFichasPorNome,
   deletarFicha,
+  editarFicha,
+  buscarFichaPorId,
 };

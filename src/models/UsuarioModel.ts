@@ -2,7 +2,6 @@ import mongoose, { Schema, Document } from "mongoose";
 import { z } from "zod";
 
 // ===== ZOD (validação dos dados de entrada) =====
-
 export const UsuarioInputSchema = z.object({
   email: z.email(),
   senha: z.string().min(6).max(12),

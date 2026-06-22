@@ -15,11 +15,14 @@ export function createRouter(logger: LoggerHelper): Router {
     res.render("index", { titulo: "Menu principal" }),
   );
   router.get("/login", (req, res) => res.render("login", { titulo: "Login" }));
-  router.get("/fichas-salvas", (req, res) =>
-    res.render("fichas-salvas", { titulo: "Fichas de Treino" }),
+  router.get("/fichas-salvas", fichaController.mostrarPaginaFichasSalvas);
+  router.get(
+    "/cadastro-de-fichas",
+    fichaController.mostrarPaginaCadastroDeFichas,
   );
-  router.get("/cadastro-de-fichas", (req, res) =>
-    res.render("cadastro-de-fichas", { titulo: "Cadastro de Ficha" }),
+  router.get(
+    "/editar-ficha-salva/:id",
+    fichaController.mostrarPaginaEditarFichas,
   );
 
   // --- API Endpoints ---
@@ -27,9 +30,14 @@ export function createRouter(logger: LoggerHelper): Router {
   router.get("/api/listar-fichas", fichaController.listarFichas);
   router.post("/api/salvar-ficha", fichaController.salvarFicha);
   router.delete("/api/deletar-ficha/:_id", fichaController.deletarFicha);
+  router.post("/api/editar-ficha/:_id", fichaController.editarFicha);
   router.get(
-    "/api/listar-ficha-especifica/:nome",
+    "/api/listar-ficha-especifica/nome/:nome",
     fichaController.buscarFichaPorNome,
+  );
+  router.get(
+    "/api/listar-ficha-especifica/id/:id",
+    fichaController.buscarFichaPorId,
   );
 
   // Usuários

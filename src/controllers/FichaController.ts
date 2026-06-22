@@ -6,6 +6,25 @@ import LoggerHelper from "../shared/utils/logger";
 export class FichaController {
   constructor(private logger: LoggerHelper) {}
 
+  mostrarPaginaFichasSalvas = async (req: Request, res: Response) => {
+    res.render("fichas-salvas", { titulo: "Fichas de Treino" });
+  };
+
+  mostrarPaginaCadastroDeFichas = async (req: Request, res: Response) => {
+    res.render("cadastro-de-fichas", { titulo: "Cadastro de Ficha" });
+  };
+
+  mostrarPaginaEditarFichas = async (req: Request, res: Response) => {
+    const ficha = await fichaService.buscarFichaPorId(
+      String(req.params.id),
+      this.logger,
+    );
+    res.render("editar-ficha-salva", {
+      titulo: "Edição de Ficha",
+      ficha: ficha,
+    });
+  };
+
   listarFichas = async (req: Request, res: Response) => {
     try {
       const fichas = await fichaService.getFichas(this.logger);
@@ -60,6 +79,35 @@ export class FichaController {
       return res.json(ficha);
     } catch (err) {
       return res.status(500).json({ error: "Erro ao deletar ficha" });
+    }
+  };
+
+  editarFicha = async (req: Request, res: Response) => {
+    try {
+      const ficha = await fichaService.editarFicha(
+        String(req.params._id),
+        req.body,
+      );
+      return res.json(ficha);
+    } catch (err) {
+      return res.status(500).json({ error: "Erro ao editar ficha" });
+    }
+  };
+
+  buscarFichaPorId = async (req: Request, res: Response) => {
+    try {
+      const ficha = await fichaService.buscarFichaPorId(
+        String(req.params.id),
+        this.logger,
+      );
+
+      if (!ficha) {
+        return res.status(404).json({ error: "Ficha não encontrada" });
+      }
+
+      return res.json(ficha);
+    } catch (err) {
+      return res.status(500).json({ error: "Erro ao buscar ficha" });
     }
   };
 }

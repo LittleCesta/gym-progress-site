@@ -186,7 +186,7 @@ export default class Fichas {
       ".form-cadastro-ficha",
     ) as HTMLFormElement;
     if (!formulario) {
-      console.log("Formulário não encontrado nesta página. Função ignorada.");
+      // console.log("Formulário não encontrado nesta página. Função ignorada.");
       return;
     }
 
@@ -273,7 +273,7 @@ export default class Fichas {
       document.querySelector(".lista-fichas");
 
     if (!containerFichas) {
-      console.log("Container de fichas não encontrado. Função ignorada.");
+      // console.log("Container de fichas não encontrado. Função ignorada.");
       return;
     }
 
@@ -319,18 +319,28 @@ export default class Fichas {
     const formulario = document.querySelector(
       ".form-editar-ficha",
     ) as HTMLFormElement | null;
+    const cancelarButton = document.querySelector(
+      "#btn-cancelar-editar",
+    ) as HTMLButtonElement | null;
 
     if (!formulario) {
-      console.log("Formulário não encontrado nesta página. Função ignorada.");
+      // console.log("Formulário não encontrado nesta página. Função ignorada.");
       return;
     }
 
     const idFicha = formulario.getAttribute("data-id");
 
     if (!idFicha) {
-      console.log("ID da ficha não encontrado no formulário. Função ignorada.");
+      // console.log("ID da ficha não encontrado no formulário. Função ignorada.");
       return;
     }
+
+    cancelarButton?.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      alert("Edição cancelada! Retornando a página de fichas salvas.");
+      window.location.href = "/fichas-salvas";
+    });
 
     formulario.addEventListener("submit", async (event) => {
       event.preventDefault();

@@ -117,7 +117,7 @@ async function deletarFicha(
 async function editarFicha(idFicha: string, ficha: FichaInputData) {
   try {
     const fichaAtualizada = await Ficha.findByIdAndUpdate(idFicha, ficha, {
-      new: true,
+      returnDocument: "after",
     });
     return fichaAtualizada;
   } catch (e) {

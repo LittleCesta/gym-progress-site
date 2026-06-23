@@ -9,6 +9,8 @@
   --black-color: #030303;
   --accent-color: #0284c7;
   --exclude-button: #df243d;
+  --cancel-button: #f30c2b;
+  --cancel-button-strong: #a70b1f;
   --edit-color: #6c751c;
   --main-transition: 0.5s all ease-in-out;
   --navbar-height: 64px;
@@ -646,6 +648,26 @@ input.erro {
 
 #btn-login:hover {
   background: var(--accent-color);
+}
+
+#btn-cancelar-editar:hover {
+  background: var(--cancel-button);
+}
+#btn-cancelar-editar {
+  background: var(--cancel-button-strong);
+  color: var(--white-color);
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.div-actions-buttons {
+  display: flex;
+  gap: 10px;
 }
 
 /* ===== MOBILE ===== */
